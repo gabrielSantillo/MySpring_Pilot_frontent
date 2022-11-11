@@ -23,6 +23,8 @@
           class="input"
           ref="password"
         ></v-text-field>
+        
+        
       </div>
 
       <div class="button_div">
@@ -30,7 +32,7 @@
           :disabled="!valid"
           color="success"
           class="mr-4"
-          @click="validate, login"
+          @click="login"
         >
           Login
         </v-btn>
@@ -70,12 +72,11 @@ export default {
           method: `POST`,
           data: {
             email: this.$refs[`email`][`value`],
-            password: this.$refs[`password`][`value`],
+            password: '123',
           },
         })
         .then((response) => {
         response
-         /* this.$router.push(`/menu`);*/
         })
         .catch((error) => {
           error;
