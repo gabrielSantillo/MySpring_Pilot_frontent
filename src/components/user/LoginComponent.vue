@@ -84,7 +84,7 @@ export default {
         })
         .then((response) => {
             cookies.set("client_id", response['data']['client_id'])
-            cookies.set(`customer_token`, response[`data`][`token`]) 
+            cookies.set(`token`, response[`data`][`token`]) 
           
             this.$router.push('/dashboard')
         })
