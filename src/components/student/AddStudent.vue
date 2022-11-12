@@ -43,7 +43,7 @@
         class="mr-4"
         @click="post_student"
       >
-        Send
+        Add
       </v-btn>
 
       <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
