@@ -85,7 +85,7 @@ export default {
             cookies.set("client_id", response['data']['client_id'])
             cookies.set(`token`, response[`data`][`token`]) 
           
-            this.$router.push('/dashboard')
+            this.$router.push('/student')
         })
         .catch((error) => {
           error;
