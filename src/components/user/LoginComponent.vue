@@ -12,7 +12,6 @@
           label="E-mail"
           required
           class="input"
-          ref="email"
         ></v-text-field>
 
         <v-text-field
@@ -24,7 +23,6 @@
           label="Password"
           hint="At least 8 characters"
           class="input"
-          ref="password"
           counter
           @click:append="show1 = !show1"
         ></v-text-field>
@@ -46,6 +44,7 @@ import axios from "axios";
 import cookies from "vue-cookies"
 export default {
   data: () => ({
+    password: "",
     valid: true,
     name: "",
     passwordRules: [(v) => !!v || "Password is required"],
@@ -78,8 +77,8 @@ export default {
           url: `http://127.0.0.1:5000/api/client-login`,
           method: `POST`,
           data: {
-            email: this.$refs[`email`][`value`],
-            password: '123',
+            email: this.email,
+            password: this.password,
           },
         })
         .then((response) => {
