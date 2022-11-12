@@ -3,68 +3,95 @@
     <h1>Add Student</h1>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
-        v-model="name"
-        :counter="10"
-        :rules="nameRules"
-        label="Name"
+        v-model="appointment_id"
+        :rules="appointmentRules"
+        label="Appointment ID"
         required
       ></v-text-field>
 
       <v-text-field
-        v-model="email"
-        :rules="emailRules"
-        label="E-mail"
+        v-model="program_id"
+        :rules="programRules"
+        label="Program ID"
         required
       ></v-text-field>
 
-      <v-select
-        v-model="select"
-        :items="items"
-        :rules="[(v) => !!v || 'Item is required']"
-        label="Item"
+      <v-text-field
+        v-model="english"
+        :rules="englishRules"
+        label="English"
         required
-      ></v-select>
+      ></v-text-field>
 
-      <v-checkbox
-        v-model="checkbox"
-        :rules="[(v) => !!v || 'You must agree to continue!']"
-        label="Do you agree?"
+      <v-text-field
+        v-model="app_form"
+        :rules="appFormRules"
+        label="Application through"
         required
-      ></v-checkbox>
+      ></v-text-field>
 
-      <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
-        Validate
+      <v-text-field
+        v-model="commission"
+        :rules="commissionRules"
+        label="Comission"
+        required
+      ></v-text-field>
+
+      <v-btn
+        :disabled="!valid"
+        color="success"
+        class="mr-4"
+        @click="post_student"
+      >
+        Send
       </v-btn>
 
       <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
-
-      <v-btn color="warning" @click="resetValidation"> Reset Validation </v-btn>
     </v-form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import cookies from "vue-cookies"
 export default {
   data: () => ({
     valid: true,
-    name: "",
-    nameRules: [
-      (v) => !!v || "Name is required",
-      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
-    ],
-    email: "",
-    emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
-    select: null,
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: false,
+    appointment_id: "",
+    appointmentRules: [(v) => !!v || "Appointment ID is required"],
+    program_id: "",
+    programRules: [(v) => !!v || "Program ID is required"],
+    english: "",
+    englishRules: [(v) => !!v || "English is required"],
+    app_form: "",
+    appFormRules: [(v) => !!v || "Application form is required"],
+    commission: "",
+    commissionRules: [(v) => !!v || "Commission is required"],
   }),
 
   methods: {
-    validate() {
-      this.$refs.form.validate();
+    post_student() {
+      axios
+        .request({
+          url: `http://127.0.0.1:5000/api/student`,
+          method: `POST`,
+          headers: {
+            token: `${cookies.get(`token`)}`
+          },
+          data: {
+            appointment_id: this.appointment_id,
+            course_id: this.program_id,
+            english: this.english,
+            app_form: this.app_form,
+            comission: this.commission,
+          },
+        })
+        .then((response) => {
+          response;
+        })
+        .catch((error) => {
+          error;
+        });
     },
     reset() {
       this.$refs.form.reset();
