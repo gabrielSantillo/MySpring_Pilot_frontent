@@ -43,6 +43,7 @@
 
 <script>
 import axios from "axios";
+import cookies from "vue-cookies"
 export default {
   data: () => ({
     valid: true,
@@ -82,7 +83,10 @@ export default {
           },
         })
         .then((response) => {
-          response;
+            cookies.set("client_id", response['data']['client_id'])
+            cookies.set(`customer_token`, response[`data`][`token`]) 
+          
+            ;
         })
         .catch((error) => {
           error;
