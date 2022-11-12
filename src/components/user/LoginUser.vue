@@ -17,23 +17,21 @@
 
         <v-text-field
           v-model="password"
-          :rules="passwordRules"
+          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="[rules.required, rules.min]"
+          :type="show1 ? 'text' : 'password'"
+          name="input-10-1"
           label="Password"
-          required
+          hint="At least 8 characters"
           class="input"
           ref="password"
+          counter
+          @click:append="show1 = !show1"
         ></v-text-field>
-        
-        
       </div>
 
       <div class="button_div">
-        <v-btn
-          :disabled="!valid"
-          color="success"
-          class="mr-4"
-          @click="login"
-        >
+        <v-btn :disabled="!valid" color="success" class="mr-4" @click="login">
           Login
         </v-btn>
 
@@ -55,6 +53,14 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
+
+    show1: false,
+    show2: true,
+    show3: false,
+    show4: false,
+    rules: {
+      required: (value) => !!value || "Password Required.",
+    },
   }),
 
   methods: {
@@ -72,11 +78,11 @@ export default {
           method: `POST`,
           data: {
             email: this.$refs[`email`][`value`],
-            password: '123',
+            password: this.$refs[`password`][`value`],
           },
         })
         .then((response) => {
-        response
+          response;
         })
         .catch((error) => {
           error;
