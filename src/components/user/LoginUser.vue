@@ -78,7 +78,7 @@ export default {
           method: `POST`,
           data: {
             email: this.$refs[`email`][`value`],
-            password: this.$refs[`password`][`value`],
+            password: '123',
           },
         })
         .then((response) => {
