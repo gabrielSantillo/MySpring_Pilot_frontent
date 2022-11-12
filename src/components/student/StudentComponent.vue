@@ -2,9 +2,9 @@
   <v-tabs fixed-tabs background-color="#154734" dark>
     <v-tab> Student </v-tab>
     <v-tab @click="appointment"> Appointment </v-tab>
-    <v-tab> College </v-tab>
-    <v-tab> Programs </v-tab>
-    <v-tab> Visa </v-tab>
+    <v-tab @click="college"> College </v-tab>
+    <v-tab @click="programs"> Programs </v-tab>
+    <v-tab @click="visa"> Visa </v-tab>
   </v-tabs>
 </template>
 
@@ -16,6 +16,18 @@ export default {
     methods: {
         appointment() {
             this.$router.push('/appointment')
+        },
+
+        college() {
+          this.$router.push('/college')
+        },
+
+        programs() {
+          this.$router.push('/programs')
+        },
+
+        visa() {
+          this.$router.push('/visa')
         }
     },
   data() {
