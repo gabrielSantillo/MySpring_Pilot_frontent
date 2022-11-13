@@ -27,11 +27,11 @@
 
     <section class="edit_appointment_container">
       <div>
-        
+        <add-appointment></add-appointment>
       </div>
 
       <div>
-        
+        <edit-appointment></edit-appointment>
       </div>
     </section>
   </div>
@@ -40,7 +40,10 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
+import AddAppointment from './AddAppointment.vue';
+import EditAppointment from './EditAppointment.vue';
 export default {
+  components: { AddAppointment, EditAppointment },
   methods: {
     student() {
       this.$router.push("/student");
