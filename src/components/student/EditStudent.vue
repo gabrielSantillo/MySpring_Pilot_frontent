@@ -54,43 +54,27 @@ export default {
     english: "",
     app_form: "",
     commission: "",
-    student_info: "",
   }),
 
   methods: {
     update() {
-      axios
-        .request({
-          url: `http://127.0.0.1:5000/api/student-by-id`,
-          headers: {
-            token: `${cookies.get(`token`)}`,
-          },
-          params: {
-            student_id: this.student_id,
-          },
-        })
-        .then((response) => {
-          this.$student_info = response["data"];
-        })
-        .catch((error) => {
-          error;
-        });
-
-      if (this.program_id == "") {
-        this.program_id = this.$student_info["course_id"];
-      }
-
-      if (this.english == "") {
-        this.english = this.$student_info["english"];
-      }
-
-      if (this.app_form == "") {
-        this.english = this.$student_info["english"];
-      }
-
-      if (this.commission == "") {
-        this.commission = this.$student_info["commission"];
-      }
+        
+    let student_info = {}
+    if(this.student_id != "") {
+        student_info['student_id'] = this.student_id
+    }
+    if(this.program_id != "") {
+        student_info['course_id'] = this.program_id
+    }
+    if(this.english != "") {
+        student_info["english"] = this.english
+    }
+    if(this.app_form != "") {
+        student_info["app_form"] = this.app_form
+    }
+    if(this.commission != "") {
+        student_info["commission"] = this.commission
+    }
 
       axios
         .request({
@@ -99,13 +83,7 @@ export default {
           headers: {
             token: `${cookies.get(`token`)}`,
           },
-          data: {
-            student_id: this.student_id,
-            course_id: this.program_id,
-            english: this.english,
-            app_form: this.app_form,
-            comission: this.commission,
-          },
+          data: student_info,
         })
         .then((response) => {
           response
