@@ -3,7 +3,7 @@
     <h1>Edit Student</h1>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
-        v-model="student_id"
+        v-model="client_id"
         :rules="studentRules"
         label="Student ID"
         required

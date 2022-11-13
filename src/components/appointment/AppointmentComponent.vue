@@ -14,7 +14,8 @@
         :key="appointment['appointment_id']"
       >
         <p><b>Appointment ID:</b> {{ appointment["appointment_id"] }}</p>
-        <p><b>Consultant: </b>{{ appointment["consultant"] }}</p>
+        <p><b>Consultant ID: </b>{{ appointment["consultant_id"] }}</p>
+        <p><b>Consultant name: </b>{{ appointment["consultant_name"] }}</p>
         <p>
           <b>Client name:</b> {{ appointment["client_first_name"] }}
           {{ appointment["client_last_name"] }}

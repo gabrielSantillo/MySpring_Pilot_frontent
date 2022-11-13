@@ -12,7 +12,7 @@
       <v-text-field
         v-model="last_name"
         :rules="lastNameRules"
-        label="Last name ID"
+        label="Last name"
         required
       ></v-text-field>
 
@@ -42,7 +42,7 @@
         :disabled="!valid"
         color="success"
         class="mr-4"
-        @click="post_student"
+        @click="post_appointment"
       >
         Add
       </v-btn>
@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import axios from "axios"
+import cookies from "vue-cookies"
 export default {
   data: () => ({
     valid: true,
@@ -63,7 +65,33 @@ export default {
     email: "",
     emailRules: [(v) => !!v || "English is required"],
     e7: null,
+    picker: null
   }),
+
+  methods: {
+    post_appointment() {
+      axios
+        .request({
+          url: `http://127.0.0.1:5000/api/appointment`,
+          method: `POST`,
+          headers: {
+            token: `${cookies.get(`token`)}`,
+          },
+          data: {
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            date: this.picker + " " + this.e7,
+          },
+        })
+        .then((response) => {
+          response;
+        })
+        .catch((error) => {
+          error;
+        });
+    },
+  },
 };
 </script>
 
