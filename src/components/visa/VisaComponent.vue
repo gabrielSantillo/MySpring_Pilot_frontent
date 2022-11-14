@@ -21,13 +21,29 @@
         <p><b>Analyst: </b>{{ visa["analyst"] }}</p>
       </div>
     </section>
+
+    <section class="edit_visa_container">
+      <div>
+        <add-visa></add-visa>
+      </div>
+
+      <div>
+        <edit-student></edit-student>
+      </div>
+    </section>
+
+    <section class="student_document">
+      <student-document></student-document>
+    </section>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
+import AddVisa from './AddVisa.vue';
 export default {
+  components: { AddVisa },
   methods: {
     student() {
       this.$router.push("/student");
