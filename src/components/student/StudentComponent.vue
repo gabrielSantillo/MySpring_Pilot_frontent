@@ -19,7 +19,7 @@
           <a :href="`mailto:student['email']`">{{ student["email"] }}</a>
         </p>
         <p>
-          <b>Program:</b>
+          <b>Program: </b>
           <a :href="student['course_url']" target="_blank">{{
             student["course_name"]
           }}</a>
@@ -47,6 +47,10 @@
         <edit-student></edit-student>
       </div>
     </section>
+
+    <section class="student_document">
+      <student-document></student-document>
+    </section>
   </div>
 </template>
 
@@ -55,8 +59,9 @@ import axios from "axios";
 import cookies from "vue-cookies";
 import AddStudent from "./AddStudent.vue";
 import EditStudent from "./EditStudent.vue";
+import StudentDocument from "./StudentDocument.vue";
 export default {
-  components: { AddStudent, EditStudent },
+  components: { AddStudent, EditStudent, StudentDocument },
   methods: {
     appointment() {
       this.$router.push("/appointment");
@@ -121,11 +126,19 @@ export default {
 .edit_student_container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  place-items: center;
   margin: 100px;
   column-gap: 100px;
 
   > div {
     width: 60%;
   }
+}
+
+.student_document {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  margin-bottom: 50px;
 }
 </style>
