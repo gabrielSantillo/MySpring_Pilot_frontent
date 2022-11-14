@@ -21,7 +21,7 @@
       </div>
 
       <div>
-        <edit-student></edit-student>
+        <edit-college></edit-college>
       </div>
     </section>
   </div>
@@ -31,8 +31,9 @@
 import axios from "axios";
 import cookies from "vue-cookies";
 import AddCollege from './AddCollege.vue';
+import EditCollege from './EditCollege.vue';
 export default {
-  components: { AddCollege },
+  components: { AddCollege, EditCollege },
   methods: {
     student() {
       this.$router.push("/student");
