@@ -42,7 +42,7 @@ export default {
     update() {
       axios
         .request({
-          url: `http://127.0.0.1:5000/api/college`,
+          url: `/api/college`,
           method: `PATCH`,
           headers: {
             token: `${cookies.get(`token`)}`,

@@ -61,7 +61,7 @@ export default {
   mounted() {
     axios
       .request({
-        url: `http://127.0.0.1:5000/api/college`,
+        url: `/api/college`,
         headers: {
           token: `${cookies.get("token")}`,
         },

@@ -76,7 +76,7 @@ export default {
     post_visa() {
       axios
         .request({
-          url: `http://127.0.0.1:5000/api/visa`,
+          url: `/api/visa`,
           method: `POST`,
           headers: {
             token: `${cookies.get(`token`)}`,

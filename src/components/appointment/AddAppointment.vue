@@ -72,7 +72,7 @@ export default {
     post_appointment() {
       axios
         .request({
-          url: `http://127.0.0.1:5000/api/appointment`,
+          url: `/api/appointment`,
           method: `POST`,
           headers: {
             token: `${cookies.get(`token`)}`,

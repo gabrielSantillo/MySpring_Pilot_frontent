@@ -73,7 +73,7 @@ export default {
     post_student() {
       axios
         .request({
-          url: `http://127.0.0.1:5000/api/student`,
+          url: `/api/student`,
           method: `POST`,
           headers: {
             token: `${cookies.get(`token`)}`
