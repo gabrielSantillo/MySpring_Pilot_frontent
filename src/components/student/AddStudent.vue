@@ -73,7 +73,7 @@ export default {
     post_student() {
       axios
         .request({
-          url: `/api/student`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/student`,
           method: `POST`,
           headers: {
             token: `${cookies.get(`token`)}`

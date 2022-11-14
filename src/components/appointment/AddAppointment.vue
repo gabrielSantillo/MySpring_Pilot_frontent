@@ -72,7 +72,7 @@ export default {
     post_appointment() {
       axios
         .request({
-          url: `/api/appointment`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/appointment`,
           method: `POST`,
           headers: {
             token: `${cookies.get(`token`)}`,

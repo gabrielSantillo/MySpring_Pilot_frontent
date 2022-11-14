@@ -53,7 +53,7 @@ export default {
 
       axios
         .request({
-          url: `/api/image`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/image`,
           method: `POST`,
           headers: {
             token: `${cookies.get(`token`)}`,

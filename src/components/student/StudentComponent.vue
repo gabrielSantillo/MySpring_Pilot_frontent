@@ -87,7 +87,7 @@ export default {
   mounted() {
     axios
       .request({
-        url: `/api/student`,
+        url: `${process.env.VUE_APP_BASE_DOMAIN}/api/student`,
         headers: {
           token: `${cookies.get("token")}`,
         },

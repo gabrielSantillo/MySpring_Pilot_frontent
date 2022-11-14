@@ -42,7 +42,7 @@ export default {
     update() {
       axios
         .request({
-          url: `/api/college`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/college`,
           method: `PATCH`,
           headers: {
             token: `${cookies.get(`token`)}`,

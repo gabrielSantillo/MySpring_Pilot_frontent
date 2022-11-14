@@ -119,7 +119,7 @@ export default {
 
       axios
         .request({
-          url: `/api/appointment`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/appointment`,
           method: `PATCH`,
           headers: {
             token: `${cookies.get(`token`)}`,

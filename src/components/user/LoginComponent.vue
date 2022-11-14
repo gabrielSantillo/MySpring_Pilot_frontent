@@ -74,7 +74,7 @@ export default {
     login() {
       axios
         .request({
-          url: `/api/client-login`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/client-login`,
           method: `POST`,
           data: {
             email: this.email,

@@ -69,7 +69,7 @@ export default {
 
       axios
         .request({
-          url: `http://127.0.0.1:5000/api/courses`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/courses`,
           method: `PATCH`,
           headers: {
             token: `${cookies.get(`token`)}`,

@@ -66,7 +66,7 @@ export default {
   mounted() {
     axios
       .request({
-        url: `/api/appointment`,
+        url: `${process.env.VUE_APP_BASE_DOMAIN}/api/appointment`,
         headers: {
           token: `${cookies.get("token")}`,
         },

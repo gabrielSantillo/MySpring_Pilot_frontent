@@ -97,7 +97,7 @@ export default {
 
       axios
         .request({
-          url: `/api/visa`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/visa`,
           method: `PATCH`,
           headers: {
             token: `${cookies.get(`token`)}`,

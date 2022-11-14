@@ -78,7 +78,7 @@ export default {
 
       axios
         .request({
-          url: `/api/student`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/student`,
           method: `PATCH`,
           headers: {
             token: `${cookies.get(`token`)}`,

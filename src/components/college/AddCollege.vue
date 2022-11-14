@@ -39,7 +39,7 @@ export default {
     post_college() {
       axios
         .request({
-          url: `/api/college`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/college`,
           method: `POST`,
           headers: {
             token: `${cookies.get(`token`)}`,

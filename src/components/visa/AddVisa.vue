@@ -76,7 +76,7 @@ export default {
     post_visa() {
       axios
         .request({
-          url: `/api/visa`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/visa`,
           method: `POST`,
           headers: {
             token: `${cookies.get(`token`)}`,
