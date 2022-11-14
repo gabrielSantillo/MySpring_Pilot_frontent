@@ -28,7 +28,7 @@
       </div>
 
       <div>
-        <edit-student></edit-student>
+        <edit-visa></edit-visa>
       </div>
     </section>
 
@@ -42,8 +42,9 @@
 import axios from "axios";
 import cookies from "vue-cookies";
 import AddVisa from './AddVisa.vue';
+import EditVisa from './EditVisa.vue';
 export default {
-  components: { AddVisa },
+  components: { AddVisa, EditVisa },
   methods: {
     student() {
       this.$router.push("/student");
