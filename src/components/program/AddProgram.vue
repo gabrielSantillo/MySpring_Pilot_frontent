@@ -51,7 +51,7 @@ export default {
   data: () => ({
     valid: true,
     college_id: "",
-    appointmentRules: [(v) => !!v || "College ID is required"],
+    collegeRules: [(v) => !!v || "College ID is required"],
     program_name: "",
     programRules: [(v) => !!v || "Program name is required"],
     program_url: "",

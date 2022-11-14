@@ -29,7 +29,7 @@
       </div>
 
       <div>
-        <edit-student></edit-student>
+        <edit-program></edit-program>
       </div>
     </section>
 
@@ -43,8 +43,9 @@
 import axios from "axios";
 import cookies from "vue-cookies";
 import AddProgram from "./AddProgram.vue";
+import EditProgram from './EditProgram.vue';
 export default {
-  components: { AddProgram },
+  components: { AddProgram, EditProgram },
   data() {
     return {
       programs: "",
