@@ -19,7 +19,7 @@
       <v-text-field
         v-model="email"
         :rules="emailRules"
-        label="email"
+        label="Email"
         required
       ></v-text-field>
 
