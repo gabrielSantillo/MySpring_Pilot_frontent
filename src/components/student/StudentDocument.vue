@@ -1,14 +1,6 @@
 <template>
   <div>
-    <!-- Add my HTML tags for collecting the user input -->
-    <input type="file" ref="upload_file" />
-    <input type="text" ref="student_id" />
-    <!-- Add my button for clicking -->
-    <button @click="upload_image">UPLOAD</button>
-    <!-- Add a simple message to show the user what happened -->
-    <h3>{{ message }}</h3>
-
-    <!--
+    
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
         v-model="student_id"
@@ -38,15 +30,22 @@
       </v-btn>
 
       <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
-    </v-form> -->
-    
+    </v-form> 
+    <br><br>
+    <h3>{{ message }}</h3>
+
+      <get-student-files></get-student-files>
+        
+
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
+import GetStudentFiles from './GetStudentFiles.vue';
 export default {
+  components: { GetStudentFiles },
   // Create a variable to show the user the status of the API
   data() {
     return {
@@ -63,8 +62,8 @@ export default {
       // In reality, this is just another key-value pair data structure
       let form = new FormData();
       // Append both the uploaded_image and description
-      form.append("student_id", this.$refs["student_id"].value);
-      form.append("uploaded_file", this.$refs["upload_file"]["files"][0]);
+      form.append("student_id", this.student_id);
+      form.append("uploaded_file", this.upload_file[0]);
 
       // Make the axios request
       axios
@@ -94,4 +93,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.student_id_input {
+  border: solid 1px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+</style>
