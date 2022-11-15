@@ -45,30 +45,34 @@ export default {
   },
 
   methods: {
-
-    upload() {
-      let formData = new FormData();
-
-      formData.append("file", this.file);
-
+    upload_image() {
+      // Create a new FormData to conform to the ways of file-uploading
+      // In reality, this is just another key-value pair data structure
+      let form = new FormData();
+      // Append both the uploaded_image and description
+      form.append("uploaded_image", this.$refs["upload_file"]["files"][0]);
+      form.append("description", this.$refs["file_description"].value);
+      // Make the axios request
       axios
         .request({
-          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/image`,
-          method: `POST`,
+          // Standard url and method
+          url: `${process.env["VUE_APP_BASE_URL"]}/api/image`,
+          method: "POST",
+          // THIS MUST BE HERE AND MATCH EXACTLY
+          // This is what lets Flask know that you are sending a form that can contain files
           headers: {
-            token: `${cookies.get(`token`)}`,
             "Content-Type": "multipart/form-data",
+            token: `${cookies.get(`token`)}` 
           },
-          data: {
-            student_id: this.student_id,
-            upload_file: this.file,
-          },
+          // The data is simply the form we created above
+          data: form,
         })
-        .then((response) => {
-          response;
+        .then((res) => {
+          res;
         })
-        .catch((error) => {
-          error;
+        .catch((err) => {
+          this.message = "Sorry, there has been an error";
+          err;
         });
     },
   },
