@@ -56,6 +56,10 @@
 import axios from "axios"
 import cookies from "vue-cookies"
 export default {
+  /* these are variables starting as empty strings
+  there are some rules as well applied to the input tags telling that they are mandatory to be filled before
+  clicking the button to send
+  this form is from the vuetify framework */
   data: () => ({
     valid: true,
     first_name: "",
@@ -68,6 +72,8 @@ export default {
     picker: null
   }),
 
+/* when adding an appointment this function is called to make a POST request and add this appointment to the database
+the token is sent as well as headers since all endopoints only works with valid tokens */
   methods: {
     post_appointment() {
       axios
@@ -77,6 +83,7 @@ export default {
           headers: {
             token: `${cookies.get(`token`)}`,
           },
+          /* this is the data being sent to the database */
           data: {
             first_name: this.first_name,
             last_name: this.last_name,
@@ -84,9 +91,11 @@ export default {
             date: this.picker + " " + this.e7,
           },
         })
+        /* I'm gonna add some feedback so the user knows when the POST request was a success */
         .then((response) => {
           response;
         })
+        /* Same for the failure, I'll add a feedback if something went wrong */
         .catch((error) => {
           error;
         });

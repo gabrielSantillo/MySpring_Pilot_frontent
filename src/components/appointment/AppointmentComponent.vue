@@ -41,11 +41,12 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
-import AddAppointment from './AddAppointment.vue';
-import EditAppointment from './EditAppointment.vue';
+import AddAppointment from "./AddAppointment.vue";
+import EditAppointment from "./EditAppointment.vue";
 export default {
   components: { AddAppointment, EditAppointment },
   methods: {
+    /* these are functions to redirect the user to the other pages available*/
     student() {
       this.$router.push("/student");
     },
@@ -63,7 +64,9 @@ export default {
     },
   },
 
+  /* on mounted make a axios request that will get all of appointments in the database */
   mounted() {
+    /* this api request needs a header when sending the request, this request is a token sent back when the user logs in */
     axios
       .request({
         url: `${process.env.VUE_APP_BASE_DOMAIN}/api/appointment`,
@@ -71,6 +74,7 @@ export default {
           token: `${cookies.get("token")}`,
         },
       })
+      /* the response when success is added to the variable appointments, which is an array, to then print all appointment onto the page */
       .then((response) => {
         this.appointments = response["data"];
       })
@@ -80,6 +84,7 @@ export default {
   },
 
   data() {
+    /* this is a variable setted to be empty */
     return {
       appointments: "",
     };
