@@ -41,8 +41,12 @@
 
 <script>
 import axios from "axios";
-import cookies from "vue-cookies"
+import cookies from "vue-cookies";
 export default {
+  /* these are variables starting as empty strings
+  there are some rules as well applied to the input tags telling that they are mandatory to be filled before
+  clicking the button to send
+  this form is from the vuetify framework */
   data: () => ({
     password: "",
     valid: true,
@@ -64,28 +68,29 @@ export default {
   }),
 
   methods: {
-    validate() {
-      this.$refs.form.validate();
-    },
     reset() {
       this.$refs.form.reset();
     },
 
+  /* this function is called when the user attempt to login to the system */
     login() {
       axios
         .request({
           url: `${process.env.VUE_APP_BASE_DOMAIN}/api/client-login`,
           method: `POST`,
+          /* this is the data being sent to the database */
           data: {
             email: this.email,
             password: this.password,
           },
         })
+        /* in case of response of success set as cookies the token to be able to do all you need inside the system */
         .then((response) => {
-            cookies.set("client_id", response['data']['client_id'])
-            cookies.set(`token`, response[`data`][`token`]) 
-          
-            this.$router.push('/student')
+          cookies.set("client_id", response["data"]["client_id"]);
+          cookies.set(`token`, response[`data`][`token`]);
+
+        /* push the user to the student page that is the main page of the system. Everything is around a student */
+          this.$router.push("/student");
         })
         .catch((error) => {
           error;
