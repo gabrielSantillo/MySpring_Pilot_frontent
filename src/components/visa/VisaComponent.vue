@@ -41,11 +41,12 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
-import AddVisa from './AddVisa.vue';
-import EditVisa from './EditVisa.vue';
+import AddVisa from "./AddVisa.vue";
+import EditVisa from "./EditVisa.vue";
 export default {
   components: { AddVisa, EditVisa },
   methods: {
+    /* these are functions to redirect the user to the other pages available*/
     student() {
       this.$router.push("/student");
     },
@@ -63,13 +64,16 @@ export default {
     },
   },
 
+  /* this is a variable setted to be empty */
   data() {
     return {
       visas: [],
     };
   },
 
+  /* on mounted make a axios request that will get all visas in the database */
   mounted() {
+    /* this api request needs a header when sending the request, this header is a token sent back when the user logs in */
     axios
       .request({
         url: `${process.env.VUE_APP_BASE_DOMAIN}/api/visa`,
@@ -77,6 +81,7 @@ export default {
           token: `${cookies.get("token")}`,
         },
       })
+      /* the response when success is added to the variable visas, which is an array. This array will be looped in order to print all visas onto the page */
       .then((response) => {
         this.visas = response["data"];
       })
