@@ -43,15 +43,17 @@
 import axios from "axios";
 import cookies from "vue-cookies";
 import AddProgram from "./AddProgram.vue";
-import EditProgram from './EditProgram.vue';
+import EditProgram from "./EditProgram.vue";
 export default {
   components: { AddProgram, EditProgram },
   data() {
+    /* this is a variable setted to be empty */
     return {
       programs: "",
     };
   },
   methods: {
+    /* these are functions to redirect the user to the other pages available*/
     student() {
       this.$router.push("/student");
     },
@@ -69,7 +71,9 @@ export default {
     },
   },
 
+  /* on mounted make a axios request that will get all programs in the database */
   mounted() {
+    /* this api request needs a header when sending the request, this header is a token sent back when the user logs in */
     axios
       .request({
         url: `${process.env.VUE_APP_BASE_DOMAIN}/api/courses`,
@@ -77,6 +81,7 @@ export default {
           token: `${cookies.get("token")}`,
         },
       })
+      /* the response when success is added to the variable programs, which is an array. This array will be looped in order to print all programs onto the page */
       .then((response) => {
         this.programs = response["data"];
       })

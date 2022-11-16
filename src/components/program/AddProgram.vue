@@ -45,9 +45,13 @@
 </template>
 
 <script>
-import axios from "axios"
-import cookies from "vue-cookies"
+import axios from "axios";
+import cookies from "vue-cookies";
 export default {
+  /* these are variables starting as empty strings
+  there are some rules as well applied to the input tags telling that they are mandatory to be filled before
+  clicking the button to send
+  this form is from the vuetify framework */
   data: () => ({
     valid: true,
     college_id: "",
@@ -59,6 +63,9 @@ export default {
     tuition: "",
     tuitionRules: [(v) => !!v || "Tuition form is required"],
   }),
+
+  /* when adding a programs this function is called to make a POST request and add this program to the database
+  the token is sent as well as headers since all endpoints only works with valid tokens */
   methods: {
     post_program() {
       axios
@@ -68,17 +75,20 @@ export default {
           headers: {
             token: `${cookies.get(`token`)}`,
           },
+          /* this is the data being sent to the database */
           data: {
             college_id: this.college_id,
             course_name: this.program_name,
             course_url: this.program_url,
-            intake: 'fall 2023',
+            intake: "fall 2023", /* this is being sent as a hard code because I realized that this information doesn't belong to a college, but a student. So I still need to change my tables and some procedures. */
             tuition: this.tuition,
           },
         })
+        /* I'm gonna add some feedback so the user knows when the POST request was a success */
         .then((response) => {
           response;
         })
+        /* Same for the failure, I'll add a feedback if something went wrong */
         .catch((error) => {
           error;
         });

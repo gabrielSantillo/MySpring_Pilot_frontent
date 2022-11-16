@@ -47,7 +47,7 @@ export default {
     the token is sent as well as headers since all endpoints only works with valid tokens */
   methods: {
     update() {
-      /* a PATCH request to the database to update the appointment
+      /* a PATCH request to the database to update the college
           note the header being sent as well */
       axios
         .request({
@@ -67,9 +67,8 @@ export default {
           response;
           alert("updated");
         })
-
+        /* in case of failure the response is to send an alert to the user */
         .catch((error) => {
-          /* in case of failure the response is to send an alert to the user */
           alert("not updated");
           error;
         });
