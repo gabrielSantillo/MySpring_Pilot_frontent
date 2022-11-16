@@ -30,11 +30,12 @@
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
-import AddCollege from './AddCollege.vue';
-import EditCollege from './EditCollege.vue';
+import AddCollege from "./AddCollege.vue";
+import EditCollege from "./EditCollege.vue";
 export default {
   components: { AddCollege, EditCollege },
   methods: {
+    /* these are functions to redirect the user to the other pages available*/
     student() {
       this.$router.push("/student");
     },
@@ -52,13 +53,16 @@ export default {
     },
   },
 
+  /* this is a variable setted to be empty */
   data() {
     return {
       colleges: "",
     };
   },
 
+  /* on mounted make a axios request that will get all of colleges in the database */
   mounted() {
+    /* this api request needs a header when sending the request, this header is a token sent back when the user logs in */
     axios
       .request({
         url: `${process.env.VUE_APP_BASE_DOMAIN}/api/college`,
@@ -66,6 +70,7 @@ export default {
           token: `${cookies.get("token")}`,
         },
       })
+      /* the response when success is added to the variable college, which is an array. This array will be looped in order to print all colleges onto the page */
       .then((response) => {
         this.colleges = response["data"];
       })

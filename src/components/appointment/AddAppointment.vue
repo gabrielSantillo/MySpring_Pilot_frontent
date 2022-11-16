@@ -73,7 +73,7 @@ export default {
   }),
 
 /* when adding an appointment this function is called to make a POST request and add this appointment to the database
-the token is sent as well as headers since all endopoints only works with valid tokens */
+the token is sent as well as headers since all endpoints only works with valid tokens */
   methods: {
     post_appointment() {
       axios

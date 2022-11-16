@@ -93,7 +93,7 @@ export default {
   },
 
   /* when edditing an appointment this function is called to make a PATCH request and add this edited appointment to the database
-the token is sent as well as headers since all endopoints only works with valid tokens */
+the token is sent as well as headers since all endpoints only works with valid tokens */
   methods: {
     update() {
       /* Starting a object */

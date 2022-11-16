@@ -24,9 +24,13 @@
 </template>
 
 <script>
-import axios from "axios"
-import cookies from "vue-cookies"
+import axios from "axios";
+import cookies from "vue-cookies";
 export default {
+  /* these are variables starting as empty strings
+  there are some rules as well applied to the input tags telling that they are mandatory to be filled before
+  clicking the button to send
+  this form is from the vuetify framework */
   data() {
     return {
       valid: true,
@@ -35,6 +39,8 @@ export default {
     };
   },
 
+  /* when adding a college this function is called to make a POST request and add this college to the database
+  the token is sent as well as headers since all endpoints only works with valid tokens */
   methods: {
     post_college() {
       axios
@@ -44,13 +50,16 @@ export default {
           headers: {
             token: `${cookies.get(`token`)}`,
           },
+          /* this is the data being sent to the database */
           data: {
             name: this.name,
           },
         })
+        /* I'm gonna add some feedback so the user knows when the POST request was a success */
         .then((response) => {
           response;
         })
+        /* Same for the failure, I'll add a feedback if something went wrong */
         .catch((error) => {
           error;
         });
