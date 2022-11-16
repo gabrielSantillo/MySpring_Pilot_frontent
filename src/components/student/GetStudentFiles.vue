@@ -19,6 +19,12 @@
         Get files
       </v-btn>
     </v-form>
+
+    <section>
+      <div v-for="(path, index) in images_src" :key="index">
+        <img :src="path">
+      </div>
+    </section>
   </div>
 </template>
 
