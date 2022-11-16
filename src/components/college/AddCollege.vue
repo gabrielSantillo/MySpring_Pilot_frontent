@@ -64,6 +64,10 @@ export default {
           error;
         });
     },
+
+    reset() {
+      this.$refs.form.reset();
+    },
   },
 };
 </script>

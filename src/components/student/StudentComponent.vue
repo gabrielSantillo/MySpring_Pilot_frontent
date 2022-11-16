@@ -62,6 +62,7 @@ import EditStudent from "./EditStudent.vue";
 import StudentDocument from "./StudentDocument.vue";
 export default {
   components: { AddStudent, EditStudent, StudentDocument },
+  /* these are functions to redirect the user to the other pages available*/
   methods: {
     appointment() {
       this.$router.push("/appointment");
@@ -80,11 +81,15 @@ export default {
     },
   },
   data() {
+    /* this is a variable setted to be an empty array*/
     return {
       students: [],
     };
   },
+
+  /* on mounted make a axios request that will get all students in the database */
   mounted() {
+    /* this api request needs a header when sending the request, this header is a token sent back when the user logs in */
     axios
       .request({
         url: `${process.env.VUE_APP_BASE_DOMAIN}/api/student`,
@@ -92,6 +97,7 @@ export default {
           token: `${cookies.get("token")}`,
         },
       })
+      /* the response when success is added to the variable students, which is an array. This array will be looped in order to print all students onto the page */
       .then((response) => {
         this.students = response["data"];
       })

@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import axios from "axios"
-import cookies from "vue-cookies"
+import axios from "axios";
+import cookies from "vue-cookies";
 export default {
   /* these are variables starting as empty strings
   there are some rules as well applied to the input tags telling that they are mandatory to be filled before
@@ -69,10 +69,10 @@ export default {
     email: "",
     emailRules: [(v) => !!v || "English is required"],
     e7: null,
-    picker: null
+    picker: null,
   }),
 
-/* when adding an appointment this function is called to make a POST request and add this appointment to the database
+  /* when adding an appointment this function is called to make a POST request and add this appointment to the database
 the token is sent as well as headers since all endpoints only works with valid tokens */
   methods: {
     post_appointment() {
@@ -99,6 +99,9 @@ the token is sent as well as headers since all endpoints only works with valid t
         .catch((error) => {
           error;
         });
+    },
+    reset() {
+      this.$refs.form.reset();
     },
   },
 };

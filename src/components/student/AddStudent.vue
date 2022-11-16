@@ -53,8 +53,12 @@
 
 <script>
 import axios from "axios";
-import cookies from "vue-cookies"
+import cookies from "vue-cookies";
 export default {
+  /* these are variables starting as empty strings
+  there are some rules as well applied to the input tags telling that they are mandatory to be filled before
+  clicking the button to send
+  this form is from the vuetify framework */
   data: () => ({
     valid: true,
     appointment_id: "",
@@ -69,6 +73,8 @@ export default {
     commissionRules: [(v) => !!v || "Commission is required"],
   }),
 
+  /* when adding a students this function is called to make a POST request and add this student to the database
+  the token is sent as well as headers since all endpoints only works with valid tokens */
   methods: {
     post_student() {
       axios
@@ -76,8 +82,9 @@ export default {
           url: `${process.env.VUE_APP_BASE_DOMAIN}/api/student`,
           method: `POST`,
           headers: {
-            token: `${cookies.get(`token`)}`
+            token: `${cookies.get(`token`)}`,
           },
+          /* this is the data being sent to the database */
           data: {
             appointment_id: this.appointment_id,
             course_id: this.program_id,
@@ -86,18 +93,17 @@ export default {
             comission: this.commission,
           },
         })
+        /* I'm gonna add some feedback so the user knows when the POST request was a success */
         .then((response) => {
           response;
         })
+        /* Same for the failure, I'll add a feedback if something went wrong */
         .catch((error) => {
           error;
         });
     },
     reset() {
       this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     },
   },
 };

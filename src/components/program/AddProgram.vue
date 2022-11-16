@@ -80,7 +80,8 @@ export default {
             college_id: this.college_id,
             course_name: this.program_name,
             course_url: this.program_url,
-            intake: "fall 2023", /* this is being sent as a hard code because I realized that this information doesn't belong to a college, but a student. So I still need to change my tables and some procedures. */
+            intake:
+              "fall 2023" /* this is being sent as a hard code because I realized that this information doesn't belong to a college, but a student. So I still need to change my tables and some procedures. */,
             tuition: this.tuition,
           },
         })
@@ -92,6 +93,9 @@ export default {
         .catch((error) => {
           error;
         });
+    },
+    reset() {
+      this.$refs.form.reset();
     },
   },
 };

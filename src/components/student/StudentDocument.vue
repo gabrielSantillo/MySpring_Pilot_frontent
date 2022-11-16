@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
         v-model="student_id"
@@ -30,23 +29,24 @@
       </v-btn>
 
       <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
-    </v-form> 
-    <br><br>
+    </v-form>
+    <br /><br />
     <h3>{{ message }}</h3>
 
-      <get-student-files></get-student-files>
-        
-
+    <get-student-files></get-student-files>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
-import GetStudentFiles from './GetStudentFiles.vue';
+import GetStudentFiles from "./GetStudentFiles.vue";
 export default {
   components: { GetStudentFiles },
-  // Create a variable to show the user the status of the API
+  /* these are variables starting as empty strings
+  there are some rules as well applied to the input tags telling that they are mandatory to be filled before
+  clicking the button to send
+  this form is from the vuetify framework */
   data() {
     return {
       message: "",
@@ -57,6 +57,7 @@ export default {
     };
   },
   methods: {
+    /* this function is called when the user wants to add files that belongs that a student */
     upload_image() {
       // Create a new FormData to conform to the ways of file-uploading
       // In reality, this is just another key-value pair data structure
@@ -80,14 +81,19 @@ export default {
           // The data is simply the form we created above
           data: form,
         })
+        // in case of success fill in the variable that will tell the user that the file was uploaded
         .then((res) => {
           res;
           this.message = "File Uploaded";
         })
+        // in case if failure fill in the variable that will tell the user that the file was uploaded
         .catch((err) => {
           this.message = "Sorry, there has been an error";
           err;
         });
+    },
+    reset() {
+      this.$refs.form.reset();
     },
   },
 };
